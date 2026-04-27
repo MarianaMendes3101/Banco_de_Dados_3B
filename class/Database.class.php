@@ -1,1 +1,33 @@
 <?php
+final class Database{
+    private static $instance = null;
+    private $connection;
+
+    private function _construct(){
+        try {
+            $config = parse_ini_file(__DIR__."/../config.ini", true)["database"];
+            $dns="";
+            if($config["driver"]=== "mysql"){
+                $dns= "mysql:host={$config['host']};port={$config['port']};dbname={$config['data']};charset=uft8";
+            } elseif ($config["driver"]=== "pgsql"){
+                $dns= "pgsql:host={$config['host']};port={$config['port']};dbname={$config['data']}";
+            }else{
+                throw new Exception("Drive de banco de dados não suportado".$config['driver']);
+            }
+            $this->connection = new PDO($dns,$config['user'], $config['pass']);
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (\PDOException $e) {
+           error_log('Erro de conexão' .$e->getMessage());
+           die('Erro ao conectar com o banco de dados. Tente mais tarde');
+        }
+    }
+    public static function getInstance(){
+        if(self::$instance===null){ 
+            self::$instance = new Database();
+    }
+    return self::$instance;
+    } 
+    public function getConnection(){
+        return $this->connection;               
+    }
+}
