@@ -22,12 +22,17 @@
     ?>
     
 <main class="container">
-  <div class="mt-5 d-flex justify-content-between p-5">
+  <div class="mt-5 d-flex gap-2 justify-content-between p-5">
     <h3>Exercícios</h3>
     <a href="ger-exercicio.php" class="btn btn-success">Novo Exercício</a>
   </div>
 
-  <table class="table p-3">
+  <div class="mb-3 d-flex justify-content-between p-5">
+    <input type="text" name="campo-filtro" id="campo-filtro"
+    class="form-control" placeholfer= "Digite para pesquisar">    
+  </div>
+
+  <table class="table p-3" id="tabela-exercicios">
     <thead>
       <tr>
         <th class="text-center">#</th>
@@ -61,5 +66,9 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="js/tb-interativa.js"></script>
+<script src="js/exercicios.js"></script>
+
 </body>
 </html>
