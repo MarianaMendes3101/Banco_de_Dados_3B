@@ -1,14 +1,19 @@
 <?php
 
 class Exercicio extends CRUD{
-    protected $table = "Exercicio";
+    protected $table = "exercicio";
     private $id;
     private $nome;
     private $descricao;
     private $grupoMuscular;
 
     public function add(){
-
+        $sql = "INSERT INTO $this->table (nome, descricao, grupo_muscular) VALUES(:nome, :descricao, :grupo_muscular)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(":nome", $this->nome, PDO::PARAM_STR);
+        $stmt->bindParam(":descricao", $this->descricao, PDO::PARAM_STR);
+        $stmt->bindParam(":grupo_muscular",$this->grupoMuscular, PDO::PARAM_STR);
+        return $stmt->execute();
     }
 
     public function update(){
