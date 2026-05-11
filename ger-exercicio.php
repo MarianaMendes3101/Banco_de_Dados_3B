@@ -47,7 +47,7 @@
         </div>
 
         <div class="mt-3">
-          <a href="gmuscular.php" class="btn btn-secondary" >Cancelar</a>
+          <a href="exercicios.php" class="btn btn-secondary" >Cancelar</a>
           <button type="submit" class="btn btn-primary" name="btnGravar">Salvar</button>
         </div>
       </form>
