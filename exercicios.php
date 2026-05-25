@@ -46,16 +46,23 @@
       <tr>
         <td><?php echo $exec->idexercicio ?></td>
         <td><?php echo $exec->nome ?></td>
-        <td class="text-center">
+        <td class="d-flex gap-1 justify-content-center">
             <a href="#" class="btn btn-outline-info btn-sm">
               <i class="bi bi-eye"></i>
             </a>
-            <a href="#" class="btn btn-outline-primary btn-sm">
+            <a href="ger-exercicio.php?id=<?= $exec->idexercicio?>" class="btn btn-outline-primary btn-sm">
               <i class="bi bi-pencil-square"></i>
             </a>
-            <a href="#" class="btn btn-outline-danger btn-sm">
+
+            <form action="db-exercicio.php" method="post">
+              <input type="hidden" name="id" value="<?= $exec->idexercicio ?? null ?>">
+              <button type="submit" class="btn btn-sm btn-outline-danger"
+              onclick="confirm('Deseja excluir o registro?')"
+              name="btn-deletar"> 
               <i class="bi bi-trash"></i>
-            </a>
+              </button>
+            </form>
+
         </td>
       </tr>
       <?php endforeach; ?>
