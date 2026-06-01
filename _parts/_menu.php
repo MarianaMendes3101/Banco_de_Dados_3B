@@ -20,6 +20,9 @@
             <li class="nav-item">
               <a class="nav-link" href="exercicios.php">Exercício</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="alunos.php">Alunos</a>
+            </li>
           </ul>
         </div>
       </div>
