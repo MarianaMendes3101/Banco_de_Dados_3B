@@ -146,7 +146,7 @@
 
         <div class="col-md-4">
           <div class="form-floating">
-            <input type="text" name="celular" id="celular" class="form-control" placeholder="Celular" value="<?= $aluno->celular ?? null ?>" <?= $desabilitado ?>>
+            <input type="text" name="celular" id="celular" class="form-control" placeholder="Celular" value="<?= $aluno->celular ?? null; ?>" data-mascara="(00)00000-0000)">
             <label for="celular">Celular</label>
           </div>
         </div>
@@ -189,7 +189,7 @@
 
         <div class="col-md-4">
           <div class="form-floating">
-            <input type="text" name="cep" id="cep" class="form-control" placeholder="CEP" value="<?= $aluno->cep ?? null ?>" <?= $desabilitado ?>>
+            <input type="text" name="cep" id="cep" class="form-control" placeholder="CEP" value="<?= $aluno->cep ?? null; ?>" data-mascara="00000-000">
             <label for="cep">CEP</label>
           </div>
         </div>
@@ -204,7 +204,7 @@
         <div class="mt-3">
           <a href="alunos.php" class="btn btn-secondary">Cancelar</a>
           <?php if (!$visualizar) : ?>
-            <button type="submit" class="btn btn-primary" name="btnGravar">Salvar</button>
+            <button type="submit" class="btn btn-primary" name="btnGravar" id="btnGravar">Salvar</button>
           <?php endif; ?>
         </div>
       </form>
@@ -239,6 +239,7 @@
       confirmaSenha.addEventListener("input", validarSenha);
     }
   </script>
+  <script src="js/utils.js"></script>
 </body>
 
 </html>
