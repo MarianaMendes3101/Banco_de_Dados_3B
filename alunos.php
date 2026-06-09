@@ -18,7 +18,9 @@
   });
 
   $aluno = new Aluno();
-  $alunos = $aluno->all();
+
+  $alunos = $aluno->sp_banco("sp_listar_alunos()");
+
   ?>
 
   <main class="container">
@@ -46,10 +48,10 @@
       <tbody>
         <?php foreach ($alunos as $aluno) : ?>
           <tr>
-            <td><?php echo $aluno->idaluno ?></td>
-            <td><?php echo $aluno->nome ?></td>
-            <td><?php echo $aluno->celular ?></td>
-            <td><?php echo $aluno->email ?></td>
+            <td><?= $aluno->idaluno ?></td>
+            <td><?= $aluno->nome ?></td>
+            <td><?= $aluno->celular ?></td>
+            <td><?= $aluno->email ?></td>
             <td class="d-flex gap-1 justify-content-center">
               <a href="ger-aluno.php?id=<?= $aluno->idaluno ?>&acao=ver" class="btn btn-outline-info btn-sm">
                 <i class="bi bi-eye"></i>
