@@ -42,4 +42,37 @@ document.addEventListener('DOMContentLoaded',()=>{
             }
         });
     }
+
+    if(senha && confirma && btnSalavr){
+        const configurarToggleSenha = (btnId, inputId) => {
+            const btn = document.querySelector(btnId);
+            if(!btn) return;
+            const input = document.querySelector(inputId);
+            const icone = btn.querySelector('i');
+            btn.addEventListener('click', ()=>{
+            const tipo = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', tipo);
+            icone.classList.toggle('bi-eye');
+            icone.classList.toggle('bi-eye-slash');
+            });
+        };
+        configurarToggleSenha('toggleSenha', 'senha');
+        configurarToggleSenha('toggleConfirmaSenha', '#confirma_senha');
+
+        const validar = ()=>{
+            const erro = senha.value ==="" || senha.value !== confirma.value;
+            confirma.style.borderColor = erro ? 'red' : 'green';
+            btnSalvar.disabled = erro;
+        };
+        senha.addEventListener('input', validar);
+        confirma.addEventListener('input', validar);        
+    }
+
+    const alerta = document.querySelector('#msgAlerta');
+    if(alerta){
+        setTimeout(()=> {
+            const bsAlerta = new bootstrap.Alert(alerta);
+            bsAlerta.close();
+        }, 4000);
+    }
 });

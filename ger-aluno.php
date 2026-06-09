@@ -107,10 +107,12 @@
             </div>
           </div>
 
-          <div class="col-md-4">
-            <div class="form-floating">
-              <input type="password" name="senha" id="senha" class="form-control" placeholder="Senha" required <?= $desabilitado ?>>
-              <label for="senha">Senha</label>
+          <div class="col-md-2">
+            <label for="senha" class="form-control">Senha</label>
+            <div class="input-group">
+              <input type="password" name="senha" id="senha" class="form-control" > 
+             <button type="button" class="btn btn-secondary" id="toggleSenha">
+              
             </div>
           </div>
 

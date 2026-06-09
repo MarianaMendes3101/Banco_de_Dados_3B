@@ -19,9 +19,30 @@
 
     $exercicios = $exercicio->all();
     
+    $status = filter_input(INPUT_GET, 'status', FILTER_SANITIZE_SPECIAL_CHARS);
+    if($status){
+      $mensagem = '';
+      $classe = 'alert-info';
+      switch ($status) {
+        case 'sucesso':
+          $mensagem = "Operação realizada com sucesso";
+          $classe = "alert-success";
+          break;
+        case 'erro':
+          $mensagem = "Ocorreu um erro ao processar os dados";
+          $classe = "alert-danger";
+          break;
+      }
+    }
+
     ?>
     
 <main class="container">
+  <div id="msgAlerta" class="alert <?= $classe ?> alert-dismissible fade show" role="alert">
+    <?= $mensagem?>
+    <button type="button" class="btn-closed" data-bs-dismiss="alert" arial-label="Close"></button>
+
+  </div>
   <div class="mt-5 d-flex justify-content-between p-5">
     <h3>Exercícios</h3>
     <a href="ger-exercicio.php" class="btn btn-success">Novo Exercício</a>
