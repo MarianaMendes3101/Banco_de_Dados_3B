@@ -62,11 +62,34 @@ if (filter_has_var(INPUT_POST, "btnGravar")) {
         $aluno->setCep(campoOuNull("cep"));
         $aluno->setObjetivo(campoOuNull("objetivo"));
 
+        $usuario->setId($id);
+        $usuario->setUsername(filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING));
+        $usuario->setEmail(filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL));
+        $senha->setEmail(filter_input(INPUT_POST, "senha", FILTER_SANITIZE_STRING));
+        $usuario->setSenha(password_hash($senha, PASSWORD_DEFAULT));
+        $usuario->setTipoUsuario("Aluno");
+        $usuario->setAtivo(1);
+       
         if ($aluno->getId() > 0) {
             if ($aluno->update()) {
                 header("Location:alunos.php");
             }
         } else {
+            $usuario->iniciarTransacao();
+            try {
+                $usuario->add();
+                $usuario->setFkusuario($usuario->getId());
+                if($aluno->add()){
+                    $usuario->confirmaTransacao();
+                    header("Location:alunos.php?status=sucesso");
+                    exit;
+                }                
+            } catch (\Throwable $e){
+                $usuario->cancelarTransacao();
+                header("Location:alunos.php?status=erro");
+                    exit;
+            }
+
             if ($aluno->add()) {
                 header("Location:alunos.php");
             }
